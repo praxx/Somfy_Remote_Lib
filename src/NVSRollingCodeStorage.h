@@ -14,7 +14,8 @@ private:
 
 public:
 	NVSRollingCodeStorage(const char *name, const char *key);
-	uint16_t nextCode() override;
+	uint16_t nextCode(bool increment = true) override;
+	uint16_t peekCode() override { return nextCode(/* increment= */false); }
 };
 
 #endif

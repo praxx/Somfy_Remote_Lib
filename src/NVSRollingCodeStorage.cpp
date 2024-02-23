@@ -8,7 +8,7 @@
 
 NVSRollingCodeStorage::NVSRollingCodeStorage(const char *name, const char *key) : name(name), key(key) {}
 
-uint16_t NVSRollingCodeStorage::nextCode() {
+uint16_t NVSRollingCodeStorage::nextCode(bool increment) {
 	uint16_t code;
 	esp_err_t err;
 	nvs_handle rcs_handle;
@@ -37,14 +37,16 @@ uint16_t NVSRollingCodeStorage::nextCode() {
 			Serial.print("Error reading!");
 			Serial.println(esp_err_to_name(err));
 	}
-	err = nvs_set_u16(rcs_handle, key, code + 1);
+  if (increment) {
+	  err = nvs_set_u16(rcs_handle, key, code + 1);
 #ifdef DEBUG
-	Serial.println((err != ESP_OK) ? "nvs_set failed!" : "nvs_set done");
+	  Serial.println((err != ESP_OK) ? "nvs_set failed!" : "nvs_set done");
 #endif
-	err = nvs_commit(rcs_handle);
+	  err = nvs_commit(rcs_handle);
 #ifdef DEBUG
-	Serial.println((err != ESP_OK) ? "nvs_commit failed!" : "nvs_commit done");
+	  Serial.println((err != ESP_OK) ? "nvs_commit failed!" : "nvs_commit done");
 #endif
+  }
 	return code;
 }
 
