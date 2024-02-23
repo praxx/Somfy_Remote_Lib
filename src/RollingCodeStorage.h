@@ -17,4 +17,9 @@ public:
 	 * @return next rolling code
 	 */
   virtual uint16_t peekCode() = 0;
+
+  /**
+   * Explicitly set the rolling code for the store.
+   */
+  virtual void setCode(uint16_t code) = 0;
 };

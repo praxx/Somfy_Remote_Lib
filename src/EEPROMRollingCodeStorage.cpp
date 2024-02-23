@@ -18,3 +18,10 @@ uint16_t EEPROMRollingCodeStorage::nextCode(bool increment) {
   }
 	return code;
 }
+
+void EEPROMRollingCodeStorage::setCode(uint16_t code) {
+	EEPROM.put(address, code);
+#if defined(ESP32) || defined(ESP8266)
+  EEPROM.commit();
+#endif
+}
