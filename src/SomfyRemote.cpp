@@ -10,6 +10,16 @@ void SomfyRemote::setup() {
 	digitalWrite(emitterPin, LOW);
 }
 
+uint16_t SomfyRemote::getCode() {
+  return rollingCodeStorage->getCode(code);
+}
+
+void SomfyRemote::setCode(uint16_t code) {
+  Serial.print("Setting remote code to ");
+  Serial.println(code);
+  rollingCodeStorage->setCode(code);
+}
+
 void SomfyRemote::sendCommand(Command command, int repeat) {
 	const uint16_t rollingCode = rollingCodeStorage->nextCode();
 	sendCommandWithCode(command, rollingCode, repeat);

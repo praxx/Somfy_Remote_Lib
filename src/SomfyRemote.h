@@ -49,6 +49,17 @@ public:
 	 * 				 only be used when simulating holding a button.
 	 */
 	void sendCommandWithCode(Command command, uint16_t rollingCode, int repeat = 4);
+
+
+  /**
+   * Gets the current code for the remote.
+   */
+  uint16_t getCode();
+
+  /**
+   * Sets the current code for the remote.
+   */
+  void setCode(uint16_t code);
 };
 
 Command getSomfyCommand(const String &string);
