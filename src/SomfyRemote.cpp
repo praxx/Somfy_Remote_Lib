@@ -11,7 +11,7 @@ void SomfyRemote::setup() {
 }
 
 uint16_t SomfyRemote::getCode() {
-  return rollingCodeStorage->getCode(code);
+  return rollingCodeStorage->peekCode(code);
 }
 
 void SomfyRemote::setCode(uint16_t code) {

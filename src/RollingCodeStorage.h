@@ -9,7 +9,7 @@ public:
 	 *
 	 * @return next rolling code
 	 */
-	virtual uint16_t nextCode() = 0;
+	virtual uint16_t nextCode(bool increment = true) = 0;
 
 	/**
 	 * Peek at the next rolling code from the store, without incrementing the stored value.
